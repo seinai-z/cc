@@ -33,9 +33,19 @@
                 <p>Feel free to customize and add more content!</p>
             </div>
             <div class="col-md-6">
-                <!-- Move the iframe to the right side -->
+                <!-- Move the iframe to the right side on larger screens -->
                 <iframe src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350" height="500"
-                    allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                    allowtransparency="true" frameborder="0"
+                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            </div>
+        </div>
+        
+        <!-- Move the iframe below on extra-small, small, and medium screens -->
+        <div class="row d-sm-none d-md-none">
+            <div class="col-12">
+                <iframe src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350" height="500"
+                    allowtransparency="true" frameborder="0"
+                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
         </div>
     </div>
