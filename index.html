@@ -26,6 +26,12 @@
         @media (max-width: 576px) {
             iframe {
                 margin-top: 20px;
+                opacity: 0;
+                transition: opacity 0.8s ease-in-out;
+            }
+
+            iframe.show {
+                opacity: 1;
             }
         }
     </style>
@@ -42,7 +48,8 @@
             <div class="col-md-6">
                 <!-- Move the iframe to the right side -->
                 <iframe src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350" height="500"
-                    allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                    allowtransparency="true" frameborder="0"
+                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
         </div>
     </div>
@@ -51,6 +58,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Add a script to add the 'show' class to the iframe after the page is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('iframe').classList.add('show');
+        });
+    </script>
 </body>
 
 </html>
