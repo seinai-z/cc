@@ -22,10 +22,6 @@
         p {
             color: #666;
         }
-        footer{
-            bottom: 20mm;
-            padding:bottom;
-        }
 
         /* Center the iframe on small screens */
         @media (max-width: 576px) {
@@ -34,13 +30,22 @@
                 display: block;
             }
         }
+
+        /* Add styling for the footer */
+        footer {
+            background-color: #D8D8D8;
+            padding: 20px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Add Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav margin="0" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">seinai_z</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +69,6 @@
         </div>
     </nav>
 
-
     <div class="container">
         <div class="row">
             <div class="col-md-1"></div>
@@ -87,16 +91,9 @@
         </div>
     </div>
 
-    <!-- Add Bootstrap Footer -->
-    <footer class="bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Contact me for more information:</p>
-                    <a class="btn btn-light" href="#">Contact</a>
-                </div>
-            </div>
-        </div>
+    <!-- Footer -->
+    <footer>
+        <a href="#">Contact</a>
     </footer>
 
     <!-- Add Bootstrap JS and Popper.js scripts (required for Bootstrap) -->
