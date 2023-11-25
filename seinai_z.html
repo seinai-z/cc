@@ -146,7 +146,7 @@
     function loadYoutubeAPI() {
         gapi.load('client', function () {
             gapi.client.init({
-                apiKey: process.env.YOUTUBE_API_KEY,
+                var apiKey = process.env.YOUTUBE_API_KEY;,
             }).then(function () {
                 return gapi.client.request({
                     path: 'https://www.googleapis.com/youtube/v3/playlistItems',
