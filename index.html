@@ -10,7 +10,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            margin: 40px;
             text-align: center;
         }
 
@@ -25,7 +25,7 @@
         /* Center the iframe on small screens */
         @media (max-width: 576px) {
             iframe {
-                margin-top: 20px;
+                margin-top: 0px;
                 opacity: 0;
                 transition: opacity 0.8s ease-in-out;
             }
@@ -38,27 +38,6 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" margin-top: 0;">
-        <a class="navbar-brand" href="#">Your Website</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" style="background-color: #7289da;>Home</a>
-                </li>
-                <!-- Add more navigation items as needed -->
-
-                <!-- Add a button to toggle the visibility of the iframe -->
-                <li class="nav-item">
-                    <button class="nav-link btn btn-link" id="toggleButton" style="background-color: #7289da;>Toggle Iframe</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -68,11 +47,9 @@
             </div>
             <div class="col-md-6">
                 <!-- Move the iframe to the right side -->
-                <div id="iframeContainer">
-                    <iframe src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350"
-                        height="500" allowtransparency="true" frameborder="0"
-                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-                </div>
+                <iframe src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350" height="500"
+                    allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                    class="show"></iframe>
             </div>
         </div>
     </div>
@@ -81,18 +58,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <script>
-        // Add a script to toggle the visibility of the iframe on button click
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleButton = document.getElementById('toggleButton');
-            const iframeContainer = document.getElementById('iframeContainer');
-            const iframe = document.querySelector('iframe');
-
-            toggleButton.addEventListener('click', function () {
-                iframeContainer.classList.toggle('show');
-                iframe.classList.toggle('show');
-            });
+        // Add a class to the iframe to trigger the transition effect
+        document.addEventListener("DOMContentLoaded", function () {
+            var iframe = document.querySelector("iframe");
+            iframe.classList.add("show");
         });
     </script>
 </body>
