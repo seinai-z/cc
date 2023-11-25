@@ -144,25 +144,27 @@
 <script>
     // Function to load YouTube API client and fetch playlist
     function loadYoutubeAPI() {
+        var apiKey = process.env.YOUTUBE_API_KEY;
+
         gapi.load('client', function () {
             gapi.client.init({
-                var apiKey = process.env.YOUTUBE_API_KEY;,
+                apiKey: apiKey,
             }).then(function () {
                 return gapi.client.request({
                     path: 'https://www.googleapis.com/youtube/v3/playlistItems',
                     params: {
                         part: 'snippet',
                         maxResults: 50,
-                        playlistId: 'PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll',
+                        playlistId: playlistId,
                     },
                 });
             }).then(function (response) {
                 displayVideos(response.result.items);
             }, function (reason) {
                 console.log('Error: ' + reason.result.error.message);
-                });
             });
-        }
+        });
+    }
 
         // Function to display videos in the specified container
         function displayVideos(videos) {
