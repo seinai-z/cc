@@ -22,15 +22,21 @@
             color: #666;
         }
 
-        /* Center the iframe on all devices */
-        iframe {
-            margin-top: 20px;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
+        /* Center the iframe on small screens */
+        @media (max-width: 576px) {
+            iframe {
+                margin-top: 20px;
+                opacity: 0;
+                transition: opacity 0.8s ease-in-out;
+            }
 
-        iframe.show {
-            opacity: 1;
+            iframe.show {
+                opacity: 1;
+            }
+
+            .nav-right {
+                display: none; /* initially hide the right navbar on small screens */
+            }
         }
     </style>
 </head>
@@ -44,13 +50,19 @@
                 <p>Feel free to customize and add more content!</p>
             </div>
             <div class="col-md-6 mx-auto">
-                <!-- Move the iframe to the right side -->
-                <iframe src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350" height="500"
-                    allowtransparency="true" frameborder="0"
-                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                <!-- Button to toggle the right navbar -->
+                <button class="btn btn-primary d-block d-md-none mt-3" onclick="toggleNav()">Toggle Navbar</button>
             </div>
         </div>
     </div>
+
+    <!-- Right Navbar -->
+    <nav class="nav-right bg-light p-3">
+        <!-- Move the iframe to the right side -->
+        <iframe id="discordFrame" src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350"
+            height="500" allowtransparency="true" frameborder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </nav>
 
     <!-- Add Bootstrap JS and Popper.js scripts (required for Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -62,6 +74,16 @@
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('iframe').classList.add('show');
         });
+
+        // Function to toggle the visibility of the right navbar
+        function toggleNav() {
+            var navRight = document.querySelector('.nav-right');
+            navRight.style.display = (navRight.style.display === 'none' || navRight.style.display === '') ? 'block' : 'none';
+
+            // Adjust the iframe visibility based on the navbar state
+            var discordFrame = document.getElementById('discordFrame');
+            discordFrame.classList.toggle('show');
+        }
     </script>
 </body>
 
