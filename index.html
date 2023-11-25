@@ -22,17 +22,15 @@
             color: #666;
         }
 
-        /* Center the iframe on small screens */
-        @media (max-width: 576px) {
-            iframe {
-                margin-top: 20px;
-                opacity: 0;
-                transition: opacity 0.8s ease-in-out;
-            }
+        /* Center the iframe on all devices */
+        iframe {
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
 
-            iframe.show {
-                opacity: 1;
-            }
+        iframe.show {
+            opacity: 1;
         }
     </style>
 </head>
@@ -40,12 +38,12 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 mx-auto"> <!-- Add mx-auto class to center the column -->
+            <div class="col-md-6 mx-auto">
                 <h1>Welcome to My Website!</h1>
                 <p>Testttt</p>
                 <p>Feel free to customize and add more content!</p>
             </div>
-            <div class="col-md-6 mx-auto"> <!-- Add mx-auto class to center the column -->
+            <div class="col-md-6 mx-auto">
                 <!-- Move the iframe to the right side -->
                 <iframe src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350" height="500"
                     allowtransparency="true" frameborder="0"
