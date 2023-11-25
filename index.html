@@ -35,42 +35,39 @@
             }
         }
 
-        /* Navigation Bar Styles */
+        /* Navigation bar styles */
         .navbar {
             position: fixed;
-            top: 0;
             right: 0;
+            top: 0;
             height: 100%;
-            background-color: #333;
-            width: 0;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: -4px 0 5px -2px rgba(0, 0, 0, 0.1);
         }
 
-        .navbar a {
-            padding: 8px;
-            text-decoration: none;
-            font-size: 20px;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #ffc107;
-        }
-
-        .navbar button {
-            font-size: 18px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #333;
-            border: none;
-            color: white;
+        .toggle-btn {
+            display: none;
             cursor: pointer;
-            padding: 5px 10px;
+            font-size: 24px;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                display: none;
+            }
+
+            .toggle-btn {
+                display: block;
+                position: fixed;
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
@@ -79,13 +76,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <!-- Button to toggle navigation bar on larger screens -->
-                <div class="navbar">
-                    <button id="toggleBtn">&#9776; Menu</button>
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
+
             </div>
             <div class="col-md-4">
                 <h1>Welcome to My Website!</h1>
@@ -97,11 +88,16 @@
             <div class="col-md-1"></div>
             <div class="col-md-1">
                 <!-- Move the iframe to the right side -->
-                <iframe class="show" src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350"
-                    height="500" allowtransparency="true" frameborder="0"
+                <iframe class="show" id="discord-iframe" src="https://discord.com/widget?id=1141737049322426368&theme=dark"
+                    width="350" height="500" allowtransparency="true" frameborder="0"
                     sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
         </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <button class="toggle-btn" onclick="toggleIframe()">Toggle Discord</button>
     </div>
 
     <!-- Add Bootstrap JS and Popper.js scripts (required for Bootstrap) -->
@@ -118,15 +114,10 @@
             }, 500);
         });
 
-        // Toggle Navigation Bar
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleBtn = document.getElementById('toggleBtn');
-            const navbar = document.querySelector('.navbar');
-
-            toggleBtn.addEventListener('click', function () {
-                navbar.style.width = navbar.style.width === '250px' ? '0' : '250px';
-            });
-        });
+        function toggleIframe() {
+            var iframe = document.getElementById('discord-iframe');
+            iframe.classList.toggle('show');
+        }
     </script>
 </body>
 
