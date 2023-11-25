@@ -139,14 +139,18 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    
     <!-- Add the YouTube API script -->
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
     // Function to load YouTube API client and fetch playlist
 function loadYoutubeAPI() {
+    // Fetch the YouTube API key from GitHub Secrets
+    const apiKey = process.env.YOUTUBE_API_KEY;
+
     gapi.load('client', function () {
         gapi.client.init({
-            apiKey: '${{ secrets.YOUTUBE_API_KEY }}',
+            apiKey: apiKey,
         }).then(function () {
             return gapi.client.request({
                 path: 'https://www.googleapis.com/youtube/v3/playlistItems',
@@ -163,6 +167,7 @@ function loadYoutubeAPI() {
         });
     });
 }
+
 
         // Function to display videos in the specified container
         function displayVideos(videos) {
