@@ -145,7 +145,7 @@
 <script>
     // Function to load YouTube API client and fetch playlist
 function loadYoutubeAPI() {
-    // Fetch the YouTube API key from GitHub Secrets
+    // Retrieve the API key from environment secrets
     const apiKey = process.env.YOUTUBE_API_KEY;
 
     gapi.load('client', function () {
@@ -167,6 +167,7 @@ function loadYoutubeAPI() {
         });
     });
 }
+
 
 
         // Function to display videos in the specified container
