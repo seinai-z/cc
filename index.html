@@ -34,6 +34,44 @@
                 margin-top: 20px;
             }
         }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            background-color: #333;
+            width: 0;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .navbar a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffc107;
+        }
+
+        .navbar button {
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 
@@ -41,21 +79,22 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-
+                <!-- Button to toggle navigation bar on larger screens -->
+                <div class="navbar">
+                    <button id="toggleBtn">&#9776; Menu</button>
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
             </div>
             <div class="col-md-4">
                 <h1>Welcome to My Website!</h1>
                 <p>Testttt</p>
                 <p>Feel free to join my discord server!</p>
             </div>
-                        <div class="col-md-1">
-            </div>
-                                    <div class="col-md-1">
-
-            </div>
-                                                <div class="col-md-1">
-
-            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
             <div class="col-md-1">
                 <!-- Move the iframe to the right side -->
                 <iframe class="show" src="https://discord.com/widget?id=1141737049322426368&theme=dark" width="350"
@@ -77,6 +116,16 @@
                     element.classList.add('show');
                 });
             }, 500);
+        });
+
+        // Toggle Navigation Bar
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.getElementById('toggleBtn');
+            const navbar = document.querySelector('.navbar');
+
+            toggleBtn.addEventListener('click', function () {
+                navbar.style.width = navbar.style.width === '250px' ? '0' : '250px';
+            });
         });
     </script>
 </body>
