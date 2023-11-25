@@ -11,62 +11,22 @@
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
+            text-align: center;
         }
 
-        h1, p, iframe {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s, transform 1s;
+        h1 {
+            color: #333;
         }
 
-        h1, p {
-            margin-bottom: 20px;
-        }
-
-        h1.show, p.show, iframe.show {
-            opacity: 1;
-            transform: translateY(0);
+        p {
+            color: #666;
         }
 
         /* Center the iframe on small screens */
         @media (max-width: 576px) {
             iframe {
-                margin-top: 20px;
-            }
-        }
-
-        /* Navigation bar styles */
-        .navbar {
-            position: fixed;
-            right: 0;
-            top: 0;
-            height: 100%;
-            background-color: #f8f9fa;
-            padding: 20px;
-            box-shadow: -4px 0 5px -2px rgba(0, 0, 0, 0.1);
-        }
-
-        .toggle-btn {
-            display: none;
-            cursor: pointer;
-            font-size: 24px;
-            padding: 10px;
-            background: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-
-        @media (max-width: 576px) {
-            .navbar {
-                display: none;
-            }
-
-            .toggle-btn {
+                margin: 20px auto;
                 display: block;
-                position: fixed;
-                top: 10px;
-                right: 10px;
             }
         }
     </style>
@@ -75,50 +35,29 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <h1>Welcome to My Website!</h1>
                 <p>Testttt</p>
-                <p>Feel free to join my discord server!</p>
+                <p>Feel free to customize and add more content!</p>
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-1"></div>
-            <div class="col-md-1"></div>
-            <div class="col-md-1">
-                <!-- Move the iframe to the right side -->
-                <iframe class="show" id="discord-iframe" src="https://discord.com/widget?id=1141737049322426368&theme=dark"
+            <div class="col-md-6">
+                <!-- Show Discord iframe on larger screens -->
+                <iframe class="d-none d-md-block" src="https://discord.com/widget?id=1141737049322426368&theme=dark"
                     width="350" height="500" allowtransparency="true" frameborder="0"
                     sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+                <!-- Show Discord button on smaller screens -->
+                <div class="d-md-none">
+                    <a class="btn btn-primary" href="https://discord.gg/NSuQCVyjHZ" target="_blank">Join Discord</a>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Navigation bar -->
-    <div class="navbar">
-        <button class="toggle-btn" onclick="toggleIframe()">Toggle Discord</button>
     </div>
 
     <!-- Add Bootstrap JS and Popper.js scripts (required for Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                document.querySelectorAll('h1, p, iframe').forEach(function (element) {
-                    element.classList.add('show');
-                });
-            }, 500);
-        });
-
-        function toggleIframe() {
-            var iframe = document.getElementById('discord-iframe');
-            iframe.classList.toggle('show');
-        }
-    </script>
 </body>
 
 </html>
