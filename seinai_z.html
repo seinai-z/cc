@@ -176,8 +176,8 @@
             videos.forEach(function (video) {
                 var iframe = document.createElement('iframe');
                 iframe.src = 'https://www.youtube.com/embed/' + video.snippet.resourceId.videoId;
-                iframe.width = '100%';
-                iframe.height = '315';
+                iframe.width = '50%';
+                iframe.height = '50%';
                 iframe.frameborder = '0';
                 iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
                 iframe.allowfullscreen = true;
