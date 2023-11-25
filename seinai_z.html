@@ -7,8 +7,6 @@
     <title>Test</title>
     <!-- Add Bootstrap CSS link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Add Embedly script -->
-    <script async src="https://cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -116,11 +114,23 @@
                 <h1>Welcome to My Website!</h1>
                 <p>Hi</p>
                 <p>Feel free to join my discord server!</p>
+
+                <!-- Embed entire YouTube playlist -->
+                <iframe width="100%" height="400"
+                    src="https://www.youtube.com/embed/videoseries?list=PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll"
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
             <div class="col-md-1 iframe-animation">
-                <!-- Show all videos from the YouTube playlist using Embedly -->
-                <div class="embedly-embed"
-                    data-url="https://www.youtube.com/playlist?list=PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll"></div>
+                <!-- Show Discord iframe on larger screens -->
+                <iframe class="d-none d-md-block" src="https://discord.com/widget?id=1141737049322426368&theme=dark"
+                    width="350" height="500" allowtransparency="true" frameborder="0"
+                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+                <!-- Show Discord button on smaller screens -->
+                <div class="d-md-none">
+                    <a class="btn btn-primary" href="https://discord.gg/NSuQCVyjHZ" target="_blank">Join Discord</a>
+                </div>
             </div>
         </div>
     </div>
