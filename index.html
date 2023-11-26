@@ -152,7 +152,6 @@
         </div>
     </div>
 </div>
-
 <!-- Page Two Content -->
 <div class="container page-two">
     <div class="row">
@@ -177,35 +176,33 @@
     // YouTube Playlist ID
     var playlistId = 'PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll';
 
-    // Check if playlist data is already in localStorage
-    var cachedPlaylistData = localStorage.getItem('youtubePlaylistData');
+    // YouTube API Key (replace 'YOUR_YOUTUBE_API_KEY' with your actual API key)
+    var apiKey = 'AIzaSyDr3g1Udzg7e0wT5wA1cU_JYlHagfKxe3w';
 
-    if (cachedPlaylistData) {
-        // Use cached data
-        renderPlaylist(JSON.parse(cachedPlaylistData));
-    } else {
-        // Fetch playlist items using YouTube Data API
-        fetchPlaylistData();
+    // Function to fetch data from API or use cached data
+    function fetchData() {
+        var cachedData = localStorage.getItem('youtubePlaylistData');
+
+        if (cachedData) {
+            // Use cached data
+            displayPlaylist(JSON.parse(cachedData));
+        } else {
+            // Fetch data from API
+            fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Cache the data
+                    localStorage.setItem('youtubePlaylistData', JSON.stringify(data));
+
+                    // Display the playlist
+                    displayPlaylist(data);
+                })
+                .catch(error => console.error('Error fetching playlist:', error));
+        }
     }
 
-    function fetchPlaylistData() {
-        // YouTube API Key (replace 'YOUR_YOUTUBE_API_KEY' with your actual API key)
-        var apiKey = 'AIzaSyDr3g1Udzg7e0wT5wA1cU_JYlHagfKxe3w';
-
-        // Fetch playlist items using YouTube Data API
-        fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`)
-            .then(response => response.json())
-            .then(data => {
-                // Cache playlist data in localStorage
-                localStorage.setItem('youtubePlaylistData', JSON.stringify(data));
-
-                // Render the playlist
-                renderPlaylist(data);
-            })
-            .catch(error => console.error('Error fetching playlist:', error));
-    }
-
-    function renderPlaylist(data) {
+    // Function to display the playlist
+    function displayPlaylist(data) {
         // Container to display YouTube videos
         var youtubePlaylistContainer = document.getElementById('youtube-playlist-container');
 
@@ -216,7 +213,11 @@
             youtubePlaylistContainer.innerHTML += embedCode;
         });
     }
+
+    // Call the fetchData function
+    fetchData();
 </script>
+
 
 
 
