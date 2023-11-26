@@ -76,6 +76,11 @@
         .iframe-animation {
             animation: fadeInRight 1.5s ease-out;
         }
+
+        /* Hide content initially */
+        .page-two {
+            display: none;
+        }
     </style>
 </head>
 
@@ -91,22 +96,17 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="#" onclick="showPage('page-one')">Page One</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="seinai_z.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/seinai-z/cc">Github</a>
+                    <a class="nav-link" href="#" onclick="showPage('page-two')">Page Two</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
+    <!-- Page One Content -->
+    <div class="container page-one">
         <div class="row">
             <div class="col-md-1">
             </div>
@@ -115,29 +115,9 @@
                 <h1>Welcome to My Website!</h1>
                 <p>Hi</p>
                 <p>Feel free to join my discord server!</p>
-
-                <!-- JavaScript code to dynamically embed YouTube playlist videos -->
-                <div id="playlist-container"></div>
-                <script>
-                    // YouTube Playlist ID
-                    var playlistId = 'PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll';
-
-                    // Fetch playlist items using YouTube Data API
-                    fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=' + playlistId + '&key=YOUR_YOUTUBE_API_KEY')
-                        .then(response => response.json())
-                        .then(data => {
-                            // Iterate through the playlist items and embed each video
-                            data.items.forEach(item => {
-                                var videoId = item.snippet.resourceId.videoId;
-                                var embedCode = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-                                document.getElementById('playlist-container').innerHTML += embedCode;
-                            });
-                        })
-                        .catch(error => console.error('Error fetching playlist:', error));
-                </script>
-
             </div>
             <div class="col-md-1 iframe-animation">
+                <br>
                 <!-- Show Discord iframe on larger screens -->
                 <iframe class="d-none d-md-block" src="https://discord.com/widget?id=1141737049322426368&theme=dark"
                     width="350" height="500" allowtransparency="true" frameborder="0"
@@ -147,6 +127,23 @@
                 <div class="d-md-none">
                     <a class="btn btn-primary" href="https://discord.gg/NSuQCVyjHZ" target="_blank">Join Discord</a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Two Content -->
+    <div class="container page-two">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 content-animation">
+                <br>
+                <h1>Welcome to Page Two!</h1>
+                <p>This is another page content.</p>
+                <p>Feel free to customize and add more content!</p>
+            </div>
+            <div class="col-md-1 iframe-animation">
+                <br>
+                <!-- Add your content for page two here -->
             </div>
         </div>
     </div>
@@ -161,6 +158,18 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function showPage(page) {
+            if (page === 'page-one') {
+                document.querySelector('.page-one').style.display = 'block';
+                document.querySelector('.page-two').style.display = 'none';
+            } else if (page === 'page-two') {
+                document.querySelector('.page-one').style.display = 'none';
+                document.querySelector('.page-two').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 
 </html>
