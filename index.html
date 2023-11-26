@@ -78,13 +78,9 @@
         }
 
         /* Hide content initially */
+        .page-one,
         .page-two {
             display: none;
-        }
-
-        /* Move buttons to the left */
-        .navbar-nav {
-            margin-left: 15px;
         }
     </style>
 </head>
@@ -114,7 +110,6 @@
     <div class="container page-one">
         <div class="row">
             <div class="col-md-1">
-                <!-- Move buttons to the left -->
             </div>
             <div class="col-md-10 content-animation">
                 <br>
@@ -140,18 +135,12 @@
     <!-- Page Two Content -->
     <div class="container page-two">
         <div class="row">
-            <div class="col-md-1">
-                <!-- Move buttons to the left -->
-            </div>
+            <div class="col-md-1"></div>
             <div class="col-md-10 content-animation">
                 <br>
                 <h1>Welcome to Page Two!</h1>
                 <p>This is another page content.</p>
-                <!-- Embed YouTube channel -->
-                <iframe width="100%" height="400"
-                    src="https://www.youtube.com/embed/?listType=user_uploads&list=seinai_z"
-                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                <p>Feel free to customize and add more content!</p>
             </div>
             <div class="col-md-1 iframe-animation">
                 <br>
@@ -172,15 +161,28 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
+        // Function to show the specified page
         function showPage(page) {
-            if (page === 'page-one') {
-                document.querySelector('.page-one').style.display = 'block';
-                document.querySelector('.page-two').style.display = 'none';
-            } else if (page === 'page-two') {
-                document.querySelector('.page-one').style.display = 'none';
-                document.querySelector('.page-two').style.display = 'block';
-            }
+            // Store the current page in localStorage
+            localStorage.setItem('currentPage', page);
+
+            // Hide all pages
+            document.querySelectorAll('.page-one, .page-two').forEach(function (pageElement) {
+                pageElement.style.display = 'none';
+            });
+
+            // Show the selected page
+            document.querySelector('.' + page).style.display = 'block';
         }
+
+        // Function to retrieve and show the last visited page
+        function showLastVisitedPage() {
+            var currentPage = localStorage.getItem('currentPage') || 'page-one';
+            showPage(currentPage);
+        }
+
+        // Call the function to show the last visited page when the page loads
+        showLastVisitedPage();
     </script>
 </body>
 
