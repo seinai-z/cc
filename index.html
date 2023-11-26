@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<script>
-    // Clear localStorage
-    localStorage.clear();
-</script>
+
 
 <head>
     <meta charset="UTF-8">
@@ -156,30 +153,18 @@
     </div>
 </div>
 
-<script>
-    // YouTube Playlist ID
-    var playlistId = 'PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll';
-
-    // YouTube API Key (replace 'YOUR_YOUTUBE_API_KEY' with your actual API key)
-    var apiKey = 'AIzaSyDr3g1Udzg7e0wT5wA1cU_JYlHagfKxe3w';
-
-    // Fetch playlist items using YouTube Data API
-    fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-            // Container to display YouTube videos
-            var youtubePlaylistContainer = document.getElementById('youtube-playlist-container');
-
-            // Iterate through the playlist items and embed each video
-            data.items.forEach(item => {
-                var videoId = item.snippet.resourceId.videoId;
-                var embedCode = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
-                youtubePlaylistContainer.innerHTML += embedCode;
-            });
-        })
-        .catch(error => console.error('Error fetching playlist:', error));
-</script>
-
+<!-- Page Two Content -->
+<div class="container page-two">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 content-animation">
+            <br>
+            <h1>Welcome to Page Two!</h1>
+            <p>This is another page content.</p>
+            <p>Feel free to customize and add more content!</p>
+            
+            <!-- YouTube Playlist Container -->
+            <div id="youtube-playlist-container"></div>
         </div>
         <div class="col-md-1 iframe-animation">
             <br>
@@ -187,6 +172,52 @@
         </div>
     </div>
 </div>
+
+<script>
+    // YouTube Playlist ID
+    var playlistId = 'PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll';
+
+    // Check if playlist data is already in localStorage
+    var cachedPlaylistData = localStorage.getItem('youtubePlaylistData');
+
+    if (cachedPlaylistData) {
+        // Use cached data
+        renderPlaylist(JSON.parse(cachedPlaylistData));
+    } else {
+        // Fetch playlist items using YouTube Data API
+        fetchPlaylistData();
+    }
+
+    function fetchPlaylistData() {
+        // YouTube API Key (replace 'YOUR_YOUTUBE_API_KEY' with your actual API key)
+        var apiKey = 'YOUR_YOUTUBE_API_KEY';
+
+        // Fetch playlist items using YouTube Data API
+        fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`)
+            .then(response => response.json())
+            .then(data => {
+                // Cache playlist data in localStorage
+                localStorage.setItem('youtubePlaylistData', JSON.stringify(data));
+
+                // Render the playlist
+                renderPlaylist(data);
+            })
+            .catch(error => console.error('Error fetching playlist:', error));
+    }
+
+    function renderPlaylist(data) {
+        // Container to display YouTube videos
+        var youtubePlaylistContainer = document.getElementById('youtube-playlist-container');
+
+        // Iterate through the playlist items and embed each video
+        data.items.forEach(item => {
+            var videoId = item.snippet.resourceId.videoId;
+            var embedCode = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+            youtubePlaylistContainer.innerHTML += embedCode;
+        });
+    }
+</script>
+
 
 
     <!-- Footer -->
