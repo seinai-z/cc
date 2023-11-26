@@ -204,18 +204,30 @@
                 .catch(error => console.error('Error fetching playlist:', error));
         }
     }
+// Function to apply random animation to an element
+    function applyRandomAnimation(element) {
+        var animations = ['fadeInUp', 'fadeInDown', 'fadeInLeft', 'fadeInRight'];
+        var randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+        element.classList.add(randomAnimation);
+    }
 
-    // Function to display the playlist
+    // Function to display the playlist with random animations
     function displayPlaylist(data) {
         // Container to display YouTube videos
         var youtubePlaylistContainer = document.getElementById('youtube-playlist-container');
 
-        // Iterate through the playlist items and embed each video
+        // Iterate through the playlist items and embed each video with random animations
         data.items.forEach(item => {
             var videoId = item.snippet.resourceId.videoId;
-            var embedCode = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+            var embedCode = '<div class="youtube-video" style="margin-bottom: 20px;">' +
+                                '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>' +
+                            '</div>';
             youtubePlaylistContainer.innerHTML += embedCode;
         });
+
+        // Apply random animations to each YouTube video
+        var youtubeVideos = document.querySelectorAll('.youtube-video');
+        youtubeVideos.forEach(applyRandomAnimation);
     }
 
     // Call the fetchData function
