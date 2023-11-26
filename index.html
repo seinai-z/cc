@@ -131,23 +131,60 @@
             </div>
         </div>
     </div>
+<!-- Page Two Content -->
+<div class="container page-two">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 content-animation">
+            <br>
+            <h1>Welcome to Page Two!</h1>
+            <p>This is another page content.</p>
+            <p>Feel free to customize and add more content!</p>
 
-    <!-- Page Two Content -->
-    <div class="container page-two">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10 content-animation">
-                <br>
-                <h1>Welcome to Page Two!</h1>
-                <p>This is another page content.</p>
-                <p>Feel free to customize and add more content!</p>
-            </div>
-            <div class="col-md-1 iframe-animation">
-                <br>
-                <!-- Add your content for page two here -->
-            </div>
+            <!-- YouTube Playlist Embed Container -->
+            <div id="playlist-container"></div>
+
+            <script>
+                // YouTube Playlist ID
+                var playlistId = 'PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll';
+
+                // YouTube API Key (replace with your own key)
+                var apiKey = 'AIzaSyDr3g1Udzg7e0wT5wA1cU_JYlHagfKxe3w';
+
+                // Fetch playlist items using YouTube Data API
+                fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Check if the playlist has items
+                        if (data.items && data.items.length > 0) {
+                            // Create a container to hold the videos
+                            var playlistContainer = document.getElementById('playlist-container');
+
+                            // Iterate through the playlist items and embed each video
+                            data.items.forEach(item => {
+                                var videoId = item.snippet.resourceId.videoId;
+                                var embedCode = `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                                playlistContainer.innerHTML += embedCode;
+                            });
+                        } else {
+                            // Display a message if the playlist is empty
+                            document.getElementById('playlist-container').innerHTML = '<p>No videos found in the playlist.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching playlist:', error);
+                        // Display an error message
+                        document.getElementById('playlist-container').innerHTML = '<p>Error loading the playlist. Please try again later.</p>';
+                    });
+            </script>
+        </div>
+        <div class="col-md-1 iframe-animation">
+            <br>
+            <!-- Add your content for page two here -->
         </div>
     </div>
+</div>
+
 
     <!-- Footer -->
     <footer>
