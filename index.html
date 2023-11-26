@@ -83,7 +83,7 @@
 
     <!-- Add Bootstrap Navbar -->
     <nav margin="0" class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Homepage</a>
+        <a class="navbar-brand" href="#">seinai_z</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -108,16 +108,35 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-1">
-            </div>
+            <div class="col-md-1"></div>
             <div class="col-md-10 content-animation">
                 <br>
                 <h1>Welcome to My Website!</h1>
                 <p>Hi</p>
                 <p>Feel free to join my discord server!</p>
+
+                <!-- JavaScript code to dynamically embed YouTube playlist videos -->
+                <div id="playlist-container"></div>
+                <script>
+                    // YouTube Playlist ID
+                    var playlistId = 'PLTygFNgSQDrfKBfWLNr_W5AAFylHdBXll';
+
+                    // Fetch playlist items using YouTube Data API
+                    fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=' + playlistId + '&key=YOUR_YOUTUBE_API_KEY')
+                        .then(response => response.json())
+                        .then(data => {
+                            // Iterate through the playlist items and embed each video
+                            data.items.forEach(item => {
+                                var videoId = item.snippet.resourceId.videoId;
+                                var embedCode = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                document.getElementById('playlist-container').innerHTML += embedCode;
+                            });
+                        })
+                        .catch(error => console.error('Error fetching playlist:', error));
+                </script>
+
             </div>
             <div class="col-md-1 iframe-animation">
-                <br>
                 <!-- Show Discord iframe on larger screens -->
                 <iframe class="d-none d-md-block" src="https://discord.com/widget?id=1141737049322426368&theme=dark"
                     width="350" height="500" allowtransparency="true" frameborder="0"
